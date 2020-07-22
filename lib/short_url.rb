@@ -56,7 +56,7 @@ class ShortUrl
           short_url  << URL_CHARS[index ]
           hex_int   =  hex_int >> 5
         end
-        unless redis.exists short_url
+        unless redis.exists? short_url
           redis.set(short_url,url)
           return short_url
         end
@@ -77,7 +77,7 @@ class ShortUrl
         6.times{
           out_char << URL_CHARS[rand(URL_CHARS_SIZE) ]
         }
-        unless redis.exists out_char
+        unless redis.exists? out_char
           redis.set(out_char,url)
           return out_char
         end
